@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#103897</color>
+    <color name="colorPrimaryDark">#171717</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="cast_expanded_controller_progress_text_color">#E5FFFFFF</color>
+
+
+</resources>
