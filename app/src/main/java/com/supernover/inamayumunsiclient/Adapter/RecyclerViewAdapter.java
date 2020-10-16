@@ -13,9 +13,11 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.supernover.inamayumunsiclient.MainActivity;
 import com.supernover.inamayumunsiclient.Model.Upload;
 import com.supernover.inamayumunsiclient.R;
 import com.supernover.inamayumunsiclient.SongsActivity;
+import com.supernover.inamayumunsiclient.Splash;
 
 import java.util.List;
 
@@ -50,9 +52,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, SongsActivity.class);
-                intent.putExtra("songsCategory",upload.getSongsCategory());
-                mContext.startActivity(intent);
+                Intent i = new Intent(mContext, SongsActivity.class);
+                i.putExtra("songsCategory",upload.getSongsCategory());
+                //mContext.startActivity(intent);
+
+                /*var chooserIntent = Intent.CreateChooser(Intent, "Open PDF");
+                chooserIntent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);:
+                Android.App.Application.Context.StartActivity(chooserIntent);*/
+
+                //Intent i = new Intent(mContext, SongsActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(i);
+
 
             }
         });
