@@ -1,12 +1,17 @@
 package com.supernover.inamayumunsiclient;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +38,10 @@ import java.util.List;
 
 public class SongsActivity extends AppCompatActivity {
 
+
+    LinearLayoutManager mLayoutManager; //for sorting
+    SharedPreferences mSharedPref;//For saving sort setting
+
     RecyclerView recyclerView;
     ProgressBar progressBar;
     Boolean checkin = false;
@@ -51,6 +60,24 @@ public class SongsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_songs);
 
+        mSharedPref = getSharedPreferences("SortSetting",MODE_PRIVATE);
+        String mSorting = mSharedPref.getString("Sort","newest");// where if there i s no  setting  selected
+        if (mSorting.equals("newest")){
+            mLayoutManager = new LinearLayoutManager(this);
+            //this will load the items from  bottom means newest things
+
+            mLayoutManager.setReverseLayout(true);
+            mLayoutManager.setStackFromEnd(true);
+
+        }
+        else if (mSorting.equals("oldest")){
+            mLayoutManager = new LinearLayoutManager(this);
+            //this will load the items from  bottom means oldest things
+            mLayoutManager.setReverseLayout(false);
+            mLayoutManager.setStackFromEnd(false)
+            ;
+        }
+
         MobileAds.initialize(this,
                 "ca-app-pub-3063877521249388~9024543430");
 
@@ -58,7 +85,9 @@ public class SongsActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbarshowsong);
         jcPlayerView = findViewById(R.id.jcplayer);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(mLayoutManager);
+
         mupload = new ArrayList<>();
         recyclerView.setAdapter(adapter);
 
@@ -201,5 +230,63 @@ public class SongsActivity extends AppCompatActivity {
         currentIndex = index;
         adapter.setSeletedPosition(currentIndex);
         adapter.notifyItemChanged(currentIndex);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.tondekanya, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_sort){
+
+            showSortDialog();
+            //kugaragaza alert to chose sorting
+            return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void showSortDialog(){
+        // ibigomba kugaragara muriryo
+        String [] sortOptions = {"Bishyashya","Bishaje"};
+        //create alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Tondekanya Uhereye Ku")//set title
+                .setIcon(R.drawable.ic_action_sort)
+                .setItems(sortOptions, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        if (i ==0){
+                            //sort by  newest
+                            //edit  our shared preferences
+
+                            SharedPreferences.Editor editor = mSharedPref.edit();
+                            editor.putString("Sort","newest"); //where sort  is key  newest is  value
+                            editor.apply();//apply/save values in  shared preferences
+                            recreate();
+
+                        }
+                        else if (i == 1){{
+
+                            //sort by  newest
+                            //edit  our shared preferences
+
+                            SharedPreferences.Editor editor = mSharedPref.edit();
+                            editor.putString("Sort","oldest"); //where sort  is key  oldest is  value
+                            editor.apply();//apply/save values in  shared preferences
+                            recreate();
+
+                        }}
+                    }
+                });
+        builder.show();
+
+
     }
 }

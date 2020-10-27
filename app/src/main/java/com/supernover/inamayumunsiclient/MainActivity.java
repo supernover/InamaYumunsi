@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                  .with(
                  "ca-app-pub-3063877521249388/8819232133",//Create a native ad id from admob console
                  adapter,//The adapter you would normally set to your recyClerView
-                         "custom"
+                         "medium"
                  )
                  .adItemIterval(2)//native ad repeating interval in the recyclerview
                  .build();
