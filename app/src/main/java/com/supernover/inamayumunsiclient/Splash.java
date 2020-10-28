@@ -37,6 +37,7 @@ public class Splash extends AppCompatActivity {
 
         setContentView(R.layout.splash);
 
+
         if (Build.VERSION.SDK_INT >= 24) {
             try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");

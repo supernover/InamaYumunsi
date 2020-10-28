@@ -4,6 +4,13 @@
     <string name="interstitial_ad_unit_id">ca-app-pub-3063877521249388/6604788870</string>
     <string name="native_ad_unit_id">ca-app-pub-3063877521249388/8819232133</string>
     <string name="packegname" translatable="false">com.supernover.inamayumunsiclient</string>
+    <string name="youAreNotUpdatedTitle">Update Available</string>
+
+    <string name="youAreNotUpdatedMessage">A new version of YOUR_APP_NAME is available. Please update to version\s</string>
+    <string name="youAreNotUpdatedMessage1">\s now</string>
+    <string name="update">Update</string>
+    <string name="restart">Update</string>
+    <string name="update_downloaded">Update</string>
 
 
 

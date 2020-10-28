@@ -1,5 +1,6 @@
 package com.supernover.inamayumunsiclient;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +32,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sanojpunchihewa.updatemanager.UpdateManager;
+import com.sanojpunchihewa.updatemanager.UpdateManagerConstant;
 import com.supernover.inamayumunsiclient.Adapter.RecyclerViewAdapter;
 import com.supernover.inamayumunsiclient.Model.Upload;
 
@@ -42,24 +47,78 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     private List<Upload> uploads;
     private static final String TAG = "MainActivity";
-
+    UpdateManager mUpdateManager;
 
 
     private AdView adView;
+    // Declare the UpdateManager
 
 
+    TextView txtFlexibleUpdateProgress;
 
+
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+       /* TextView txtCurrentVersion = findViewById(R.id.txt_current_version);
+        final TextView txtAvailableVersion = findViewById(R.id.txt_available_version);
+        final TextView txtStalenessDays = findViewById(R.id.txt_staleness_days);
+        txtFlexibleUpdateProgress = findViewById(R.id.txt_flexible_progress);
+
+
+        // Initialize the Update Manager with the Activity and the Update Mode
+        mUpdateManager = UpdateManager.Builder(this).mode(UpdateManagerConstant.FLEXIBLE);
+        mUpdateManager.start();
+
+        // Callback from UpdateInfoListener
+        // You can get the available version code of the apk in Google Play
+        // Number of days passed since the user was notified of an update through the Google Play
+        mUpdateManager.addUpdateInfoListener(new UpdateManager.UpdateInfoListener() {
+            @Override
+            public void onReceiveVersionCode(final int code) {
+                txtAvailableVersion.setText(String.valueOf(code));
+            }
+
+            @Override
+            public void onReceiveStalenessDays(final int days) {
+                txtStalenessDays.setText(String.valueOf(days));
+            }
+
+        });
+        // Callback from Flexible Update Progress
+        // This is only available for Flexible mode
+        // Find more from https://developer.android.com/guide/playcore/in-app-updates#monitor_flexible
+        mUpdateManager.addFlexibleUpdateDownloadListener(new UpdateManager.FlexibleUpdateDownloadListener() {
+            @Override
+            public void onDownloadProgress(final long bytesDownloaded, final long totalBytes) {
+                txtFlexibleUpdateProgress.setText("Downloading: " + bytesDownloaded + " / " + totalBytes);
+            }
+        });*/
+
+
+
+
+
+
+
+
+
+
 
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
+
+
+
         });
+
+
 
         recyclerView = findViewById(R.id.recyclerview_id);
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
@@ -152,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.dashboard_menu, menu);
@@ -181,23 +241,16 @@ public class MainActivity extends AppCompatActivity {
 
 
                         sharingIntent.setType("text/plain");
-                        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "*\uD835\uDC14\uD835\uDC1B\uD835\uDC2E \uD835\uDC30\uD835\uDC1A\uD835\uDC24\uD835\uDC2E\uD835\uDC26\uD835\uDC2F\uD835\uDC1A \uD835\uDC08\uD835\uDC27\uD835\uDC1A\uD835\uDC26\uD835\uDC1A \uD835\uDC32'\uD835\uDC2E\uD835\uDC26\uD835\uDC2E\uD835\uDC27\uD835\uDC2C\uD835\uDC22 \uD835\uDC27\uD835\uDC22\uD835\uDC33\uD835\uDC22\uD835\uDC27\uD835\uDC1D\uD835\uDC22 \uD835\uDC27\uD835\uDC1A\uD835\uDC26\uD835\uDC1A \uD835\uDC33\uD835\uDC22\uD835\uDC2D\uD835\uDC1A\uD835\uDC27\uD835\uDC1D\uD835\uDC2E\uD835\uDC24\uD835\uDC1A\uD835\uDC27\uD835\uDC32\uD835\uDC1E \uD835\uDC33\uD835\uDC2E\uD835\uDC1B\uD835\uDC2E\uD835\uDC33\uD835\uDC22\uD835\uDC26\uD835\uDC1A \uD835\uDC1C\uD835\uDC32\uD835\uDC1A\uD835\uDC27\uD835\uDC20\uD835\uDC30\uD835\uDC1A \uD835\uDC22\uD835\uDC1B\uD835\uDC22\uD835\uDC20\uD835\uDC1A\uD835\uDC27\uD835\uDC22\uD835\uDC2B\uD835\uDC28 \uD835\uDC1B\uD835\uDC22\uD835\uDC20\uD835\uDC1E\uD835\uDC33\uD835\uDC30\uD835\uDC1E\uD835\uDC21\uD835\uDC28 \uD835\uDC21\uD835\uDC1A\uD835\uDC2B\uD835\uDC22\uD835\uDC26\uD835\uDC28 \uD835\uDC2C\uD835\uDC28\uD835\uDC1B\uD835\uDC1A\uD835\uDC27\uD835\uDC2E\uD835\uDC24\uD835\uDC22\uD835\uDC2B\uD835\uDC30\uD835\uDC1A,\uD835\uDC1B\uD835\uDC1A\uD835\uDC33\uD835\uDC1A \uD835\uDC2C\uD835\uDC21\uD835\uDC1A\uD835\uDC27\uD835\uDC20\uD835\uDC1A\uD835\uDC33\uD835\uDC22 ,\uD835\uDC22\uD835\uDC23\uD835\uDC1A\uD835\uDC26\uD835\uDC1B\uD835\uDC28 \uD835\uDC11\uD835\uDC32\uD835\uDC1A\uD835\uDC21\uD835\uDC22\uD835\uDC27\uD835\uDC1D\uD835\uDC2E\uD835\uDC2B\uD835\uDC1A \uD835\uDC14\uD835\uDC1B\uD835\uDC2E\uD835\uDC33\uD835\uDC22\uD835\uDC26\uD835\uDC1A,\uD835\uDC22\uD835\uDC1B\uD835\uDC22\uD835\uDC2B\uD835\uDC1A\uD835\uDC2B\uD835\uDC22 \uD835\uDC1B\uD835\uDC32\uD835\uDC2E \uD835\uDC1B\uD835\uDC2E\uD835\uDC2D\uD835\uDC1E\uD835\uDC20\uD835\uDC1E\uD835\uDC2D\uD835\uDC2C\uD835\uDC22 \uD835\uDC27\uD835\uDC22\uD835\uDC1B\uD835\uDC22\uD835\uDC27\uD835\uDC1D\uD835\uDC22 \uD835\uDC1B\uD835\uDC32\uD835\uDC22\uD835\uDC27\uD835\uDC2C\uD835\uDC21\uD835\uDC22 \uD835\uDC24\uD835\uDC2E\uD835\uDC2B\uD835\uDC22 _\uD835\uDC08\uD835\uDC27\uD835\uDC1A\uD835\uDC26\uD835\uDC1A_\uD835\uDC32'\uD835\uDC14\uD835\uDC26\uD835\uDC2E\uD835\uDC27\uD835\uDC2C\uD835\uDC22_ \uD835\uDC00\uD835\uDC29\uD835\uDC29 *\n" +
-                                "\n" +
-                                "------------------------------\n" +
-                                "Share& Give us feedback on playstore\n" +
-                                "\n" +
-                                "Inkunga ikomeye cyane.\n" +
-                                "*\uD835\uDC03\uD835\uDC28\uD835\uDC30\uD835\uDC27\uD835\uDC25\uD835\uDC28\uD835\uDC1A\uD835\uDC1D \uD835\uDC0D\uD835\uDC28\uD835\uDC30* - \n" +
-                                "\n" +
-                                "Urakoze. \n\n" + url);
+                        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "*Ubu wakumva Inama y'umunsi nizindi nama zitandukanye zubuzima kuri _Inama_y'Umunsi_ App *\n\n------------------------------\n\n*Download Now* - \n\n" + url);
                         //sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject");
                         sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        //startActivity(Intent.createChooser(sharingIntent, "Share using"));
 
                         PackageManager packageManager = getPackageManager();
                         if (sharingIntent.resolveActivity(packageManager) != null) {
                             startActivity(sharingIntent);
                             // Broadcast the Intent.
-                            startActivity(Intent.createChooser(sharingIntent, "Share Using"));
+                            startActivity(Intent.createChooser(sharingIntent, "Share to"));
                         }
 
 
@@ -217,4 +270,16 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+    /*public void callFlexibleUpdate(View view) {
+        // Start a Flexible Update
+        mUpdateManager.mode(UpdateManagerConstant.FLEXIBLE).start();
+        txtFlexibleUpdateProgress.setVisibility(View.VISIBLE);
+    }
+
+    public void callImmediateUpdate(View view) {
+        // Start a Immediate Update
+        mUpdateManager.mode(UpdateManagerConstant.IMMEDIATE).start();
+    }*/
+
+
 }
