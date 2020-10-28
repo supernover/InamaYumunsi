@@ -2,6 +2,7 @@ package com.supernover.inamayumunsiclient;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import android.os.Build;
@@ -36,6 +37,7 @@ public class Splash extends AppCompatActivity {
         //***********************************************************************************************
 
         setContentView(R.layout.splash);
+
 
 
         if (Build.VERSION.SDK_INT >= 24) {
@@ -130,4 +132,5 @@ public class Splash extends AppCompatActivity {
 
 
     }
+
 }

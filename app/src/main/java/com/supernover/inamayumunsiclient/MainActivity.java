@@ -3,13 +3,13 @@ package com.supernover.inamayumunsiclient;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,9 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.efaso.admob_advanced_native_recyvlerview.AdmobNativeAdAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -33,12 +31,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sanojpunchihewa.updatemanager.UpdateManager;
-import com.sanojpunchihewa.updatemanager.UpdateManagerConstant;
 import com.supernover.inamayumunsiclient.Adapter.RecyclerViewAdapter;
 import com.supernover.inamayumunsiclient.Model.Upload;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -62,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        forceUpdate();
+
+
+
+
 
        /* TextView txtCurrentVersion = findViewById(R.id.txt_current_version);
         final TextView txtAvailableVersion = findViewById(R.id.txt_available_version);
@@ -186,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
                 adapter = new RecyclerViewAdapter(getApplicationContext(),uploads);
 
 
+
+
+
                 AdmobNativeAdAdapter admobNativeAdAdapter= AdmobNativeAdAdapter.Builder
                  .with(
                  "ca-app-pub-3063877521249388/8819232133",//Create a native ad id from admob console
@@ -279,7 +287,20 @@ public class MainActivity extends AppCompatActivity {
     public void callImmediateUpdate(View view) {
         // Start a Immediate Update
         mUpdateManager.mode(UpdateManagerConstant.IMMEDIATE).start();
+
     }*/
+    public void forceUpdate()
+    {
+        PackageManager packageManager = this.getPackageManager();
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo =  packageManager.getPackageInfo(getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String currentVersion = packageInfo.versionName;
+        new ForceUpdateAsync(currentVersion,MainActivity.this).execute();
+    }
 
 
 }

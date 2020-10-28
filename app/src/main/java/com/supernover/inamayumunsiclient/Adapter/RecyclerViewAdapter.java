@@ -49,6 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.tv_book_title.setText(upload.getName());
         Glide.with(mContext).load(upload.getUrl()).into(holder.imd_book_thumnail);
 
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
