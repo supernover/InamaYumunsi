@@ -253,7 +253,7 @@ public class SongsActivity extends AppCompatActivity {
     }
     private void showSortDialog(){
         // ibigomba kugaragara muriryo
-        String [] sortOptions = {"BISHYASHYA","BISHAJE"};
+        String [] sortOptions = {"BISHYASHYA(Newest)","BISHAJE(Oldest)"};
         //create alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("TONDEKANYA UHEREYE KU")//set title

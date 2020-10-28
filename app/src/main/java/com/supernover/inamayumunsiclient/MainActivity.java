@@ -3,6 +3,7 @@ package com.supernover.inamayumunsiclient;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
                 AdmobNativeAdAdapter admobNativeAdAdapter= AdmobNativeAdAdapter.Builder
                  .with(
-                         "ca-app-pub-3940256099942544/2247696110",//Create a native ad id from admob console
+                 "ca-app-pub-3063877521249388/8819232133",//Create a native ad id from admob console
                  adapter,//The adapter you would normally set to your recyClerView
                          "custom"
                  )
@@ -161,9 +162,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
 
-           // case R.id.requestmenu:
+            case R.id.Rate:
 
-                //startActivity(new Intent(MainActivity.this, RequestContent.class));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.packegname)));
+                startActivity(intent);
+
+                break;
+            default:
               //  break;
             case R.id.sharemenu:
 
@@ -176,16 +181,23 @@ public class MainActivity extends AppCompatActivity {
 
 
                         sharingIntent.setType("text/plain");
-                        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "*Ubu wakumva Inama y'umunsi nizindi nama zitandukanye zubuzima kuri _Inama_y'Umunsi_ App *\n\n------------------------------\n\n*Download Now* - \n\n" + url);
+                        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "*\uD835\uDC14\uD835\uDC1B\uD835\uDC2E \uD835\uDC30\uD835\uDC1A\uD835\uDC24\uD835\uDC2E\uD835\uDC26\uD835\uDC2F\uD835\uDC1A \uD835\uDC08\uD835\uDC27\uD835\uDC1A\uD835\uDC26\uD835\uDC1A \uD835\uDC32'\uD835\uDC2E\uD835\uDC26\uD835\uDC2E\uD835\uDC27\uD835\uDC2C\uD835\uDC22 \uD835\uDC27\uD835\uDC22\uD835\uDC33\uD835\uDC22\uD835\uDC27\uD835\uDC1D\uD835\uDC22 \uD835\uDC27\uD835\uDC1A\uD835\uDC26\uD835\uDC1A \uD835\uDC33\uD835\uDC22\uD835\uDC2D\uD835\uDC1A\uD835\uDC27\uD835\uDC1D\uD835\uDC2E\uD835\uDC24\uD835\uDC1A\uD835\uDC27\uD835\uDC32\uD835\uDC1E \uD835\uDC33\uD835\uDC2E\uD835\uDC1B\uD835\uDC2E\uD835\uDC33\uD835\uDC22\uD835\uDC26\uD835\uDC1A \uD835\uDC1C\uD835\uDC32\uD835\uDC1A\uD835\uDC27\uD835\uDC20\uD835\uDC30\uD835\uDC1A \uD835\uDC22\uD835\uDC1B\uD835\uDC22\uD835\uDC20\uD835\uDC1A\uD835\uDC27\uD835\uDC22\uD835\uDC2B\uD835\uDC28 \uD835\uDC1B\uD835\uDC22\uD835\uDC20\uD835\uDC1E\uD835\uDC33\uD835\uDC30\uD835\uDC1E\uD835\uDC21\uD835\uDC28 \uD835\uDC21\uD835\uDC1A\uD835\uDC2B\uD835\uDC22\uD835\uDC26\uD835\uDC28 \uD835\uDC2C\uD835\uDC28\uD835\uDC1B\uD835\uDC1A\uD835\uDC27\uD835\uDC2E\uD835\uDC24\uD835\uDC22\uD835\uDC2B\uD835\uDC30\uD835\uDC1A,\uD835\uDC1B\uD835\uDC1A\uD835\uDC33\uD835\uDC1A \uD835\uDC2C\uD835\uDC21\uD835\uDC1A\uD835\uDC27\uD835\uDC20\uD835\uDC1A\uD835\uDC33\uD835\uDC22 ,\uD835\uDC22\uD835\uDC23\uD835\uDC1A\uD835\uDC26\uD835\uDC1B\uD835\uDC28 \uD835\uDC11\uD835\uDC32\uD835\uDC1A\uD835\uDC21\uD835\uDC22\uD835\uDC27\uD835\uDC1D\uD835\uDC2E\uD835\uDC2B\uD835\uDC1A \uD835\uDC14\uD835\uDC1B\uD835\uDC2E\uD835\uDC33\uD835\uDC22\uD835\uDC26\uD835\uDC1A,\uD835\uDC22\uD835\uDC1B\uD835\uDC22\uD835\uDC2B\uD835\uDC1A\uD835\uDC2B\uD835\uDC22 \uD835\uDC1B\uD835\uDC32\uD835\uDC2E \uD835\uDC1B\uD835\uDC2E\uD835\uDC2D\uD835\uDC1E\uD835\uDC20\uD835\uDC1E\uD835\uDC2D\uD835\uDC2C\uD835\uDC22 \uD835\uDC27\uD835\uDC22\uD835\uDC1B\uD835\uDC22\uD835\uDC27\uD835\uDC1D\uD835\uDC22 \uD835\uDC1B\uD835\uDC32\uD835\uDC22\uD835\uDC27\uD835\uDC2C\uD835\uDC21\uD835\uDC22 \uD835\uDC24\uD835\uDC2E\uD835\uDC2B\uD835\uDC22 _\uD835\uDC08\uD835\uDC27\uD835\uDC1A\uD835\uDC26\uD835\uDC1A_\uD835\uDC32'\uD835\uDC14\uD835\uDC26\uD835\uDC2E\uD835\uDC27\uD835\uDC2C\uD835\uDC22_ \uD835\uDC00\uD835\uDC29\uD835\uDC29 *\n" +
+                                "\n" +
+                                "------------------------------\n" +
+                                "Share& Give us feedback on playstore\n" +
+                                "\n" +
+                                "Inkunga ikomeye cyane.\n" +
+                                "*\uD835\uDC03\uD835\uDC28\uD835\uDC30\uD835\uDC27\uD835\uDC25\uD835\uDC28\uD835\uDC1A\uD835\uDC1D \uD835\uDC0D\uD835\uDC28\uD835\uDC30* - \n" +
+                                "\n" +
+                                "Urakoze. \n\n" + url);
                         //sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject");
                         sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        //startActivity(Intent.createChooser(sharingIntent, "Share using"));
 
                         PackageManager packageManager = getPackageManager();
                         if (sharingIntent.resolveActivity(packageManager) != null) {
                             startActivity(sharingIntent);
                             // Broadcast the Intent.
-                            startActivity(Intent.createChooser(sharingIntent, "Share to"));
+                            startActivity(Intent.createChooser(sharingIntent, "Share Using"));
                         }
 
 
