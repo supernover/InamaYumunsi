@@ -36,12 +36,12 @@ public class ForceUpdateAsync extends AsyncTask<String, String, String> {
     protected String doInBackground(String... params) {
 
         try {
-            newVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + "com.mm.appstatus" + "&hl=en")
+            newVersion = Jsoup.connect("https://play.google.com/store/apps/details?id="+context.getPackageName()+"&hl=en")
                     .timeout(30000)
                     .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
                     .referrer("http://www.google.com")
                     .get()
-                    .select("div.hAyfc:nth-child(4) > span:nth-child(2) > div:nth-child(1) > span:nth-child(1)")
+                    .select("div[itemprop=softwareVersion]")
                     .first()
                     .ownText();
         } catch (IOException e) {
@@ -76,7 +76,7 @@ public class ForceUpdateAsync extends AsyncTask<String, String, String> {
         final AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(
                 context);
         myAlertDialog.setTitle("Update Available");
-        myAlertDialog.setMessage("A new version of WhatsApp Statuses Saver is available. Please update to version");
+        myAlertDialog.setMessage("A new version of  Inama y' Umunsi is available. Please update to version");
 
         myAlertDialog.setPositiveButton("Update",
                 new DialogInterface.OnClickListener() {

@@ -4,7 +4,7 @@
 
     <item android:id="@+id/sharemenu" android:title="Share" />
     <item  android:id="@+id/Rate"
-        android:title="Rate us"
+        android:title="Give us feedback"
         app:showAsAction="withText"/>
 
 
