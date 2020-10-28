@@ -128,9 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
                 AdmobNativeAdAdapter admobNativeAdAdapter= AdmobNativeAdAdapter.Builder
                  .with(
-                 "ca-app-pub-3063877521249388/8819232133",//Create a native ad id from admob console
+                         "ca-app-pub-3940256099942544/2247696110",//Create a native ad id from admob console
                  adapter,//The adapter you would normally set to your recyClerView
-                         "medium"
+                         "custom"
                  )
                  .adItemIterval(2)//native ad repeating interval in the recyclerview
                  .build();

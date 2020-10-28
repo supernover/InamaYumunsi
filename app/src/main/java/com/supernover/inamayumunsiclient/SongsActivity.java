@@ -253,10 +253,10 @@ public class SongsActivity extends AppCompatActivity {
     }
     private void showSortDialog(){
         // ibigomba kugaragara muriryo
-        String [] sortOptions = {"Bishyashya","Bishaje"};
+        String [] sortOptions = {"BISHYASHYA","BISHAJE"};
         //create alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Tondekanya Uhereye Ku")//set title
+        builder.setTitle("TONDEKANYA UHEREYE KU")//set title
                 .setIcon(R.drawable.ic_action_sort)
                 .setItems(sortOptions, new DialogInterface.OnClickListener() {
                     @Override
